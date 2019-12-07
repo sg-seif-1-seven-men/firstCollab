@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/sg-seif-1-seven-men/firstCollab#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.7.14"
   }
 }
