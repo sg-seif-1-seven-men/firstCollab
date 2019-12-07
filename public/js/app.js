@@ -11,12 +11,6 @@ class App extends React.Component {
   }
   render() {
     return (
-      //   <div>
-      //     <Header />
-      //     <h1> Buddy Goals </h1>
-      //     <About />
-      //   </div>
-
       <BrowserRouter>
         <div>
           <Header />
@@ -32,6 +26,8 @@ class App extends React.Component {
               <Commitments />
             </Route>
           </Switch>
+
+          <Footer />
         </div>
       </BrowserRouter>
     );
@@ -39,5 +35,3 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.querySelector(".containerReact"));
-
-// ReactDOM.render(<App />, document.querySelector(".container"));
