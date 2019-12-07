@@ -19,18 +19,7 @@ class App extends React.Component {
 
       <BrowserRouter>
         <div>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/commitments">Commitments</Link>
-            </li>
-          </ul>
-          <hr />
+          <Header />
 
           <Switch>
             <Route exact path="/">
@@ -49,6 +38,6 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.querySelector(".container"));
+ReactDOM.render(<App />, document.querySelector(".containerReact"));
 
 // ReactDOM.render(<App />, document.querySelector(".container"));
