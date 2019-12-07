@@ -1,0 +1,23 @@
+{
+  "name": "firstcollab",
+  "version": "1.0.0",
+  "description": "Daryl was here.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sg-seif-1-seven-men/firstCollab.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sg-seif-1-seven-men/firstCollab/issues"
+  },
+  "homepage": "https://github.com/sg-seif-1-seven-men/firstCollab#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
