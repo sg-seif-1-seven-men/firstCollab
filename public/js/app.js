@@ -1,6 +1,7 @@
 // Import React Router
 const { BrowserRouter, Link, Switch, Route, browserHistory } = ReactRouterDOM;
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +24,9 @@ class App extends React.Component {
               <About />
             </Route>
             <Route path="/commitments">
+              <Commitments />
+            </Route>
+            <Route path="/signup">
               <Commitments />
             </Route>
           </Switch>
