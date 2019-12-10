@@ -31,4 +31,15 @@ router.put("/:id", (req, res) => {
   );
 });
 
+// const commitmentsSeed = require("../models/commitmentsSeed.js");
+// router.get("/seed/commitments", (req, res) => {
+//   Commitments.insertMany(commitmentsSeed, (err, players) => {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       res.send(commitments);
+//     }
+//   });
+// });
+
 module.exports = router;

@@ -22,9 +22,9 @@ db.on("disconnected", () => console.log("mongo disconnected"));
 app.use(express.json()); // returns middleware that only parses JSON
 app.use(express.static("public"));
 
-// // Routes
-// const commitmentsController = require("./controller/commitments.js");
-// app.use("/", commitmentsController);
+// Routes
+const commitmentsController = require("./controller/commitments.js");
+app.use("/", commitmentsController);
 
 // this will catch any route that doesn't exist
 app.get("*", (req, res) => {
