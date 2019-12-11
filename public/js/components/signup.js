@@ -24,7 +24,7 @@ class Signup extends React.Component {
         })
             .then((createdUser) => {
                 return createdUser.json();
-                console.log(createdUser);
+
             })
             .catch((error) => console.log(error));
     };
@@ -32,7 +32,6 @@ class Signup extends React.Component {
     render() {
         return (
             <React.Fragment>
-
                 <br />
                 <br />
                 <br />
@@ -41,9 +40,7 @@ class Signup extends React.Component {
                 </div>
 
                 <div className="container card main">
-                    {/* <img src="../img/login.jpg" className="card-img-top" alt="Caroushare signup" /> */}
                     <div className="card-body">
-
                         <form onSubmit={this.handleSubmit} className="col s12 form-signin">
                             <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
                             <label for="username" className="">
@@ -70,8 +67,6 @@ class Signup extends React.Component {
                                 value={this.state.password}
                                 onChange={this.handleChange}
                             />
-
-
                             <br />
 
                             <input type="submit" value="submit" />

@@ -1,5 +1,5 @@
 // Import React Router
-const { BrowserRouter, Link, Switch, Route, browserHistory } = ReactRouterDOM;
+const { Redirect, BrowserRouter, Link, Switch, Route, browserHistory } = ReactRouterDOM;
 
 
 class App extends React.Component {
@@ -28,7 +28,7 @@ class App extends React.Component {
 
           <Switch>
             <Route exact path="/">
-              <Home currentUser={this.state.currentUser} />
+              <Home />
             </Route>
             <Route path="/about">
               <About />
@@ -38,6 +38,9 @@ class App extends React.Component {
             </Route>
             <Route path="/signup">
               <Signup />
+            </Route>
+            <Route path="/login">
+              {this.state.currentUser ? <Redirect to="/commitments" /> : <Login userState={this.userState} />}
             </Route>
           </Switch>
 
