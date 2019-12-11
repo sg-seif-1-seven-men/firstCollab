@@ -5,9 +5,10 @@ const app = express();
 const db = mongoose.connection;
 
 // Environment Variables
-// const mongoURI =
-//   process.env.MONGODB_URI || "mongodb://localhost:27017/merncrud";
 const PORT = process.env.PORT || 3000;
+const mongoURI =
+  process.env.MONGODB_URI ||
+  "mongodb+srv://kkarunia23:generalassembly@cluster0-knxzn.mongodb.net/test";
 
 // Connect to Mongo
 // mongoose.connect(mongoURI, { useNewUrlParser: true }, () =>
