@@ -9,9 +9,6 @@ const bodyParser = require('body-parser');
 
 // Environment Variables
 const PORT = process.env.PORT || 3000;
-const mongoURI =
-  process.env.MONGODB_URI ||
-  "mongodb+srv://kkarunia23:generalassembly@cluster0-knxzn.mongodb.net/test";
 
 const mongoURI =
   process.env.MONGODB_URI ||
