@@ -40,7 +40,10 @@ class Header extends React.Component {
                   <Link to="/commitments">Commitments</Link>
                 </li>
                 <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
-                  <Link to="/commitments">Signup</Link>
+                  <Link to="/signup">Signup</Link>
+                </li>
+                <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
+                  <Link to="/login">Login</Link>
                 </li>
               </ul>
             </div>

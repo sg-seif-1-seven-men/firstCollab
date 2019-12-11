@@ -6,10 +6,20 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: "",
+      currentUser: "",
       commitments: []
     };
   }
+  userState = (user) => {
+    this.setState(
+      {
+        currentUser: user
+      },
+      () => {
+        console.log('user logged in');
+      }
+    );
+  };
   render() {
     return (
       <BrowserRouter>
@@ -18,7 +28,7 @@ class App extends React.Component {
 
           <Switch>
             <Route exact path="/">
-              <Home />
+              <Home currentUser={this.state.currentUser} />
             </Route>
             <Route path="/about">
               <About />
@@ -27,7 +37,7 @@ class App extends React.Component {
               <Commitments />
             </Route>
             <Route path="/signup">
-              <Commitments />
+              <Signup />
             </Route>
           </Switch>
 
