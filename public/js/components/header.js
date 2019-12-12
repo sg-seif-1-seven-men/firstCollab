@@ -1,4 +1,11 @@
 class Header extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     currentUser: this.props.currentUser
+  //   };
+  // }
+
   render() {
     return (
       <div>
@@ -11,23 +18,6 @@ class Header extends React.Component {
 
         <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
           <div class="container">
-            {/* <a
-              class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none"
-              href="#"
-            >
-              Start Bootstrap
-            </a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarResponsive"
-              aria-controls="navbarResponsive"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button> */}
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav mx-auto">
                 <li class="nav-item active px-lg-4 nav-link text-uppercase text-expanded">
@@ -42,9 +32,17 @@ class Header extends React.Component {
                 <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
                   <Link to="/signup">Signup</Link>
                 </li>
+                {/* {this.props.currentUser ? (
+                  <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded" onClick={this.props.toLogout}>
+                    Logout
+							</li>
+                ) : ( */}
                 <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
-                  <Link to="/login">Login</Link>
+                  <Link to="/login">
+                    Log In
+								</Link>
                 </li>
+                {/* )} */}
               </ul>
             </div>
           </div>
