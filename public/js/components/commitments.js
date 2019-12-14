@@ -9,7 +9,7 @@ class Commitments extends React.Component {
       buddy: "",
       referee: "",
       success: "",
-      progress: "Raring to Go!",
+      // progress: "Raring to Go!",
       users: [],
       commitments: []
     };
@@ -103,7 +103,7 @@ class Commitments extends React.Component {
           buddy: "",
           referee: "",
           success: "",
-          progress: "Raring to Go!"
+          // progress: "Raring to Go!"
         });
         console.log(jsonedCommitment);
 
@@ -203,7 +203,7 @@ class Commitments extends React.Component {
             <br></br>
           </div>
           {/* Populate Progress Status  */}
-          <div>
+          {/* <div>
             My progress status is:<br></br>
             <select
               value={this.state.progress}
@@ -211,11 +211,11 @@ class Commitments extends React.Component {
               id="progress"
             >
               <option value="Raring to Go!">Raring to Go!</option>
-              {/* <option value="On Track!">On Track!</option>
-              <option value="Need Help!">Need Help!</option> */}
+              <option value="On Track!">On Track!</option>
+              <option value="Need Help!">Need Help!</option>
             </select>
           </div>
-          <br></br>
+          <br></br> */}
           {/* Submit Button */}
           <input type="submit" value="submit" />
         </form>
