@@ -7,32 +7,63 @@ class Commitments extends React.Component {
       buddy: "",
       referee: "",
       success: "",
-      progress: "On Track",
-      commitments: []
+      progress: "On Track"
     };
   }
   handleChange = event => {
     this.setState({ [event.target.id]: event.target.value });
   };
+  // handleSubmit = event => {
+  //   event.preventDefault();
+  //   const newCommitment = {
+  // commitment: this.state.commitment,
+  // owner: this.state.owner,
+  // buddy: this.state.buddy,
+  // referee: this.state.referee,
+  // success: this.state.success,
+  // progress: this.state.progress
+  //   };
+  //   this.setState({
+  //     commitment: "Exercise once a wee",
+  //     owner: "",
+  //     buddy: "",
+  //     referee: "",
+  //     success: "",
+  //     progress: "On Track",
+  //     commitments: [newCommitment, ...this.state.commitments]
+  //   });
+  // };
+
   handleSubmit = event => {
     event.preventDefault();
-    const newCommitment = {
-      commitment: this.state.commitment,
-      owner: this.state.owner,
-      buddy: this.state.buddy,
-      referee: this.state.referee,
-      success: this.state.success,
-      progress: this.state.progress
-    };
-    this.setState({
-      commitment: "Exercise once a wee",
-      owner: "",
-      buddy: "",
-      referee: "",
-      success: "",
-      progress: "On Track",
-      commitments: [newCommitment, ...this.state.commitments]
-    });
+
+    fetch("/commitments", {
+      body: JSON.stringify(this.state),
+      method: "POST",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json"
+      }
+    })
+      .then(createdCommitment => {
+        console.log("fetch worked. currently at created commitment");
+        return createdCommitment;
+      })
+      .then(jsonedCommitment => {
+        console.log(
+          "created commitment worked. currently at jsoned commitment"
+        );
+        this.setState({
+          commitment: "Exercise once a wee",
+          owner: "",
+          buddy: "",
+          referee: "",
+          success: "",
+          progress: "On Track"
+        });
+        console.log(jsonedCommitment);
+      })
+      .catch(error => console.log(error));
   };
 
   render() {
@@ -110,6 +141,12 @@ class Commitments extends React.Component {
         <h5>Owner: {this.state.owner}</h5>
         <h5>Buddy: {this.state.buddy}</h5>
         <h5>Referee: {this.state.referee}</h5>
+
+        <div>
+          {/* {commitments.map(item => (
+            <li>commitments.name</li>
+          ))} */}
+        </div>
       </div>
     );
   }
