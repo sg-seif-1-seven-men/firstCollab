@@ -42,9 +42,6 @@ class Signup extends React.Component {
         }
         return (
             <React.Fragment>
-                <br />
-                <br />
-                <br />
                 <div className="container">
                     <h6>Sign up page</h6>
                 </div>
