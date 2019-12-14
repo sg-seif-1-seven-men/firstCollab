@@ -1,10 +1,10 @@
 class Header extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     currentUser: this.props.currentUser
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentUser: this.props.currentUser
+    };
+  }
 
   render() {
     return (
@@ -26,12 +26,21 @@ class Header extends React.Component {
                 <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
                   <Link to="/about">About</Link>
                 </li>
-                <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
-                  <Link to="/commitments">Commitments</Link>
-                </li>
-                <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
-                  <Link to="/signup">Signup</Link>
-                </li>
+                {this.props.currentUser ? (
+                  <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
+                    <Link to="/commitments">Commitments</Link>
+                  </li>
+                ) :
+                  ''
+                }
+                {this.props.currentUser ? (
+                  ''
+                ) : (
+                    <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
+                      <Link to="/signup">Signup</Link>
+                    </li>
+                  )
+                }
                 {this.props.currentUser ? (
                   <li
                     class="nav-item px-lg-4 nav-link text-uppercase text-expanded"
@@ -40,16 +49,16 @@ class Header extends React.Component {
                     Logout
                   </li>
                 ) : (
-                  <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
-                    <Link to="/login">Log In</Link>
-                  </li>
-                )}
+                    <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
+                      <Link to="/login">Log In</Link>
+                    </li>
+                  )}
                 <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
                   {this.props.currentUser ? (
                     <li>Welcome {this.props.currentUser.username} </li>
                   ) : (
-                    ""
-                  )}
+                      ""
+                    )}
                 </li>
               </ul>
             </div>
