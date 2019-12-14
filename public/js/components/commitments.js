@@ -7,8 +7,19 @@ class Commitments extends React.Component {
       buddy: "",
       referee: "",
       success: "",
-      progress: "On Track"
+      progress: "On Track",
+      users: []
     };
+  }
+  componentDidMount() {
+    fetch("/users")
+      .then(response => response.json())
+      .then(users => {
+        console.log(users);
+        this.setState({
+          users: users
+        });
+      });
   }
   handleChange = event => {
     this.setState({ [event.target.id]: event.target.value });
@@ -73,6 +84,7 @@ class Commitments extends React.Component {
         <h3>Make a new Commitment Today!</h3>
         <br></br>
         <form onSubmit={this.handleSubmit}>
+          {/* Select Commitment */}
           <div>
             I am committing to:<br></br>
             <select
@@ -90,40 +102,50 @@ class Commitments extends React.Component {
             <br></br>
           </div>
           <br></br>
+          {/* Populate Owner */}
           <div>
-            <input
-              type="text"
-              name="owner"
+            Owner: <br></br>
+            <select
               value={this.state.owner}
               onChange={this.handleChange}
               id="owner"
-              placeholder="Owner"
-            />
-            <br />
-
-            <input
-              type="text"
-              name="buddy"
+            >
+              {this.state.users.map(user => {
+                return <option value={user._id}>{user.username}</option>;
+              })}
+            </select>
+            <br></br>
+            <br></br>
+            {/* Populate Buddy  */}
+            Buddy: <br></br>
+            <select
               value={this.state.buddy}
               onChange={this.handleChange}
               id="buddy"
-              placeholder="Buddy"
-            />
-            <br />
-
-            <input
-              type="text"
-              name="referee"
+            >
+              {this.state.users.map(user => {
+                return <option value={user._id}>{user.username}</option>;
+              })}
+            </select>
+            <br></br>
+            <br></br>
+            {/* Populate Referee  */}
+            Referee: <br></br>
+            <select
               value={this.state.referee}
               onChange={this.handleChange}
               id="referee"
-              placeholder="Referee"
-            />
-            <br />
+            >
+              {this.state.users.map(user => {
+                return <option value={user._id}>{user.username}</option>;
+              })}
+            </select>
+            <br></br>
             <br></br>
           </div>
+          {/* Populate Progress Status  */}
           <div>
-            I am committing to:<br></br>
+            My progress status is:<br></br>
             <select
               value={this.state.progress}
               onChange={this.handleChange}
@@ -134,19 +156,14 @@ class Commitments extends React.Component {
             </select>
           </div>
           <br></br>
+          {/* Submit Button */}
           <input type="submit" value="submit" />
         </form>
         <br></br>
-        <h3>Submitted Info</h3>
+        {/* <h3>Submitted Info</h3>
         <h5>Owner: {this.state.owner}</h5>
         <h5>Buddy: {this.state.buddy}</h5>
-        <h5>Referee: {this.state.referee}</h5>
-
-        <div>
-          {/* {commitments.map(item => (
-            <li>commitments.name</li>
-          ))} */}
-        </div>
+        <h5>Referee: {this.state.referee}</h5> */}
       </div>
     );
   }

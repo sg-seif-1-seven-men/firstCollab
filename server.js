@@ -37,9 +37,9 @@ app.use(
     saveUninitialized: false
   })
 );
-// // Routes
-// const commitmentsController = require("./controller/commitments.js");
-// app.use("/", commitmentsController);
+// Routes
+const commitmentsController = require("./controller/commitments.js");
+app.use("/commitments", commitmentsController);
 const sessionsControllers = require("./controller/sessions.js");
 app.use("/sessions", sessionsControllers);
 
