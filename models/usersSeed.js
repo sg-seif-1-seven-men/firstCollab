@@ -1,4 +1,4 @@
-module.exports = [
+const users = [
   {
     name: "Admin",
     password: "admin"
