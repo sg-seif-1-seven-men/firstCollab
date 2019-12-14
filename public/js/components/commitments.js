@@ -3,11 +3,13 @@ class Commitments extends React.Component {
     super(props);
     this.state = {
       commitment: "Exercise once a week",
+      duration: "",
+      frequency: "",
       owner: this.props.currentUser._id,
       buddy: "",
       referee: "",
       success: "",
-      progress: "On Track",
+      progress: "Raring to Go!",
       users: [],
       commitments: []
     };
@@ -95,11 +97,13 @@ class Commitments extends React.Component {
         );
         this.setState({
           commitment: "Exercise once a week",
+          duration: "",
+          frequency: "",
           owner: this.props.currentUser._id,
           buddy: "",
           referee: "",
           success: "",
-          progress: "On Track"
+          progress: "Raring to Go!"
         });
         console.log(jsonedCommitment);
 
@@ -120,30 +124,48 @@ class Commitments extends React.Component {
       <div class="text-center text-white d-none d-lg-block">
         <br></br>
         {/* Create Commitment  */}
-        <h3>Make a new Commitment Today!</h3>
+        <h3>Make a Commitment to a New Goal Today!</h3>
         <br></br>
 
         <form onSubmit={this.handleSubmit}>
           {/* Select Commitment */}
           <div>
-            I am committing to:<br></br>
+            I am committing to a goal of:<br></br>
             <select
               value={this.state.commitment}
               onChange={this.handleChange}
               id="commitment"
             >
-              <option selected value="Exercise">
-                Exercise
-              </option>
+              <option value="Exercise">Exercise</option>
               <option value="Not smoke">Not smoke</option>
               <option value="Eat Vegetables">Eat Vegetables</option>
+            </select>
+            <select
+              value={this.state.frequency}
+              onChange={this.handleChange}
+              id="frequency"
+            >
+              <option value="Daily">Daily</option>
+              <option value="Weekly">Weekly</option>
+              <option value="3x per Week">3x per Week</option>
+            </select>
+            &nbsp;for&nbsp;
+            <select
+              value={this.state.duration}
+              onChange={this.handleChange}
+              id="duration"
+            >
+              <option value="1 month">1 month</option>
+              <option value="2 months">2 months</option>
+              <option value="3 monhts">3 months</option>
             </select>
             <br></br>
           </div>
           <br></br>
+
           {/* Populate Owner */}
           <div>
-            Owner: <br></br>
+            Your Goals Community: <br></br>
             <select
               value={this.state.owner}
               onChange={this.handleChange}
@@ -153,10 +175,8 @@ class Commitments extends React.Component {
                 {this.props.currentUser.username}
               </option>
             </select>
-            <br></br>
-            <br></br>
             {/* Populate Buddy  */}
-            Buddy: <br></br>
+            &nbsp;partnering with&nbsp;
             <select
               value={this.state.buddy}
               onChange={this.handleChange}
@@ -167,10 +187,8 @@ class Commitments extends React.Component {
                 return <option value={user._id}>{user.username}</option>;
               })}
             </select>
-            <br></br>
-            <br></br>
             {/* Populate Referee  */}
-            Referee: <br></br>
+            &nbsp;held accountable by&nbsp;
             <select
               value={this.state.referee}
               onChange={this.handleChange}
@@ -192,8 +210,9 @@ class Commitments extends React.Component {
               onChange={this.handleChange}
               id="progress"
             >
-              <option value="On Track">On Track!</option>
-              <option value="Need Help">Need Help!</option>
+              <option value="Raring to Go!">Raring to Go!</option>
+              {/* <option value="On Track!">On Track!</option>
+              <option value="Need Help!">Need Help!</option> */}
             </select>
           </div>
           <br></br>
@@ -217,6 +236,7 @@ class Commitments extends React.Component {
                 <th scope="col">Buddy</th>
                 <th scope="col">Referee</th>
                 <th scope="col">Progress</th>
+                <th scope="col">Update Progress</th>
                 <th scope="col">Verified by Referee</th>
               </tr>
             </thead>
@@ -228,6 +248,9 @@ class Commitments extends React.Component {
                     <td> {commitment.buddy.username} </td>
                     <td> {commitment.referee.username} </td>
                     <td> {commitment.progress} </td>
+                    <td>
+                      <Link to="/update">Update Progress</Link>
+                    </td>
                     <td> {commitment.progress} </td>
                   </tr>
                 ) : (
@@ -266,6 +289,7 @@ class Commitments extends React.Component {
                 <th scope="col">Owner</th>
                 <th scope="col">Referee</th>
                 <th scope="col">Progress</th>
+                <th scope="col">Update Progress</th>
                 <th scope="col">Verified by Referee</th>
               </tr>
             </thead>
@@ -277,6 +301,9 @@ class Commitments extends React.Component {
                     <td> {commitment.owner.username} </td>
                     <td> {commitment.referee.username} </td>
                     <td> {commitment.progress} </td>
+                    <td>
+                      <Link to="/update">Update Progress</Link>
+                    </td>
                     <td> {commitment.progress} </td>
                   </tr>
                 ) : (
@@ -299,6 +326,7 @@ class Commitments extends React.Component {
                 <th scope="col">Buddy</th>
                 <th scope="col">Progress</th>
                 <th scope="col">Verified by Referee</th>
+                <th scope="col">Verify</th>
               </tr>
             </thead>
             <tbody>
@@ -310,6 +338,9 @@ class Commitments extends React.Component {
                     <td> {commitment.buddy.username} </td>
                     <td> {commitment.progress} </td>
                     <td> {commitment.progress} </td>
+                    <td>
+                      <Link to="/update">Verify as Referee</Link>
+                    </td>
                   </tr>
                 ) : (
                   ""
