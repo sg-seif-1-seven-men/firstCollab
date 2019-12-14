@@ -219,19 +219,40 @@ class Commitments extends React.Component {
                 <th scope="col">Buddy</th>
                 <th scope="col">Referee</th>
                 <th scope="col">Progress</th>
+                <th scope="col">Verified by Referee</th>
               </tr>
             </thead>
             <tbody>
               {this.state.commitments.map(commitment => {
-                return (
+                return this.props.currentUser._id === commitment.owner._id ? (
                   <tr>
                     <td> {commitment.commitment} </td>
                     <td> {commitment.buddy.username} </td>
                     <td> {commitment.referee.username} </td>
                     <td> {commitment.progress} </td>
+                    <td> {commitment.progress} </td>
                   </tr>
+                ) : (
+                  ""
                 );
               })}
+
+              {/* {this.props.currentUser._id === commitment.owner._id ? (
+                this.state.commitments.map(commitment => {
+                  return;
+                  <tr>
+                    <td> {commitment.commitment} </td>
+                    <td> {commitment.buddy.username} </td>
+                    <td> {commitment.referee.username} </td>
+                    <td> {commitment.progress} </td>
+                    <td> {commitment.progress} </td>
+                  </tr>;
+                })
+              ) : (
+                <tr>
+                  <td> You have no commitments at the moment! </td>
+                </tr>
+              )} */}
             </tbody>
           </table>
         </div>
