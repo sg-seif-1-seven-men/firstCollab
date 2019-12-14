@@ -76,7 +76,7 @@ class App extends React.Component {
               {this.state.currentUser ? (
                 <Commitments currentUser={this.state.currentUser} />
               ) : (
-                  <Login userState={this.userState} />
+                  <Redirect to="/login" userState={this.userState} />
                 )}
             </Route>
             <Route path="/signup">
