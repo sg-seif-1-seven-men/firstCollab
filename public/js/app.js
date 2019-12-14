@@ -20,11 +20,19 @@ class App extends React.Component {
       }
     );
   };
+
+  toLogout = () => {
+    this.setState({
+      currentUser: ''
+    });
+  };
   render() {
     return (
       <BrowserRouter>
         <div>
-          <Header />
+          <Header currentUser={this.state.currentUser} toLogout={this.toLogout} />
+
+
 
           <Switch>
             <Route exact path="/">
