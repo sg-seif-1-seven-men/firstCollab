@@ -8,6 +8,29 @@ const {
   browserHistory
 } = ReactRouterDOM;
 
+// import React, { Component } from "react";
+// import { Redirect } from "react-router-dom";
+// import { Button } from "semantic-ui-react";
+
+// class Logout extends Component {
+//   state = {
+//     navigate: false
+//   }
+
+//   logout = () => {
+//     localStorage.clear("token");
+//     this.setState({ navigate: true });
+//   };
+
+//   render() {
+//     const { navigate } = this.state;
+//     if (navigate) {
+//       return <Redirect to="/" />;
+//     }
+//     return <Button onClick={this.logout}>log out</Button>;
+//   }
+// }
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +55,7 @@ class App extends React.Component {
       currentUser: ""
     });
   };
-  
+
   render() {
     return (
       <BrowserRouter>
@@ -50,7 +73,11 @@ class App extends React.Component {
               <About />
             </Route>
             <Route path="/commitments">
-              <Commitments currentUser={this.state.currentUser} />
+              {this.state.currentUser ? (
+                <Commitments currentUser={this.state.currentUser} />
+              ) : (
+                  <Login userState={this.userState} />
+                )}
             </Route>
             <Route path="/signup">
               <Signup />
@@ -59,8 +86,8 @@ class App extends React.Component {
               {this.state.currentUser ? (
                 <Redirect to="/commitments" />
               ) : (
-                <Login userState={this.userState} />
-              )}
+                  <Login userState={this.userState} />
+                )}
             </Route>
           </Switch>
 
