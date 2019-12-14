@@ -15,9 +15,22 @@ router.delete("/:id", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  Commitments.create(req.body, (err, createdCommitments) => {
-    res.json(createdCommitments);
-  });
+  Commitments.create(
+    {
+      commitment: req.body.commitment,
+      owner: req.body.owner,
+      buddy: req.body.buddy,
+      referee: req.body.referee,
+      success: req.body.success,
+      progress: req.body.progress
+    },
+    (err, createdCommitments) => {
+      if (err) console.log(err);
+      console.log("success");
+      res.json(createdCommitments);
+      console.log(createdCommitments);
+    }
+  );
 });
 
 router.put("/:id", (req, res) => {
@@ -25,7 +38,7 @@ router.put("/:id", (req, res) => {
     req.params.id,
     req.body,
     { new: true },
-    (err, updatedTodo) => {
+    (err, updatedCommitments) => {
       res.json(updatedCommitments);
     }
   );
