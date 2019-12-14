@@ -42,11 +42,8 @@ class Signup extends React.Component {
         }
         return (
             <React.Fragment>
-                <div className="container">
-                    <h6>Sign up page</h6>
-                </div>
 
-                <div className="container card main">
+                <div className="login-form-1">
                     <div className="card-body">
                         <form onSubmit={this.handleSubmit} className="col s12 form-signin">
                             <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
