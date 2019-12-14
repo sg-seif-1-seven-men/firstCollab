@@ -8,7 +8,8 @@ class Commitments extends React.Component {
       referee: "",
       success: "",
       progress: "On Track",
-      users: []
+      users: [],
+      commitments: []
     };
   }
   componentDidMount() {
@@ -20,7 +21,35 @@ class Commitments extends React.Component {
           users: users
         });
       });
+    fetch("/commitments")
+      .then(response => response.json())
+      .then(commitments => {
+        console.log(commitments);
+        this.setState({
+          commitments: commitments
+        });
+      });
   }
+
+  componentDidUpdate() {
+    // fetch("/users")
+    //   .then(response => response.json())
+    //   .then(users => {
+    //     console.log(users);
+    //     this.setState({
+    //       users: users
+    //     });
+    //   });
+    // fetch("/commitments")
+    //   .then(response => response.json())
+    //   .then(commitments => {
+    //     console.log(commitments);
+    //     this.setState({
+    //       commitments: commitments
+    //     });
+    //   });
+  }
+
   handleChange = event => {
     this.setState({ [event.target.id]: event.target.value });
   };
@@ -73,6 +102,15 @@ class Commitments extends React.Component {
           progress: "On Track"
         });
         console.log(jsonedCommitment);
+
+        fetch("/commitments")
+          .then(response => response.json())
+          .then(commitments => {
+            console.log(commitments);
+            this.setState({
+              commitments: commitments
+            });
+          });
       })
       .catch(error => console.log(error));
   };
@@ -81,8 +119,10 @@ class Commitments extends React.Component {
     return (
       <div class="text-center text-white d-none d-lg-block">
         <br></br>
+        {/* Create Commitment  */}
         <h3>Make a new Commitment Today!</h3>
         <br></br>
+
         <form onSubmit={this.handleSubmit}>
           {/* Select Commitment */}
           <div>
@@ -98,6 +138,7 @@ class Commitments extends React.Component {
               <option value="Not smoke for the week">
                 Not smoke for the week
               </option>
+              <option value="Eat Vegetables Daily">Eat Vegetables Daily</option>
             </select>
             <br></br>
           </div>
@@ -162,10 +203,38 @@ class Commitments extends React.Component {
           <input type="submit" value="submit" />
         </form>
         <br></br>
-        <h3>Selected Info for your Verification before Submission</h3>
+        {/* <h3>Selected Info for your Verification before Submission</h3>
         <h5>Owner: {this.state.owner}</h5>
         <h5>Buddy: {this.state.buddy}</h5>
-        <h5>Referee: {this.state.referee}</h5>
+        <h5>Referee: {this.state.referee}</h5> */}
+        {/* View/Update Commitments  */}
+        <div class="text-center text-white d-none d-lg-block">
+          <br></br>
+          <h3>Commitments Dashboard</h3>
+          <br></br>
+          <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Commitment</th>
+                <th scope="col">Buddy</th>
+                <th scope="col">Referee</th>
+                <th scope="col">Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.commitments.map(commitment => {
+                return (
+                  <tr>
+                    <td> {commitment.commitment} </td>
+                    <td> {commitment.buddy.username} </td>
+                    <td> {commitment.referee.username} </td>
+                    <td> {commitment.progress} </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
