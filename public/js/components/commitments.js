@@ -132,13 +132,11 @@ class Commitments extends React.Component {
               onChange={this.handleChange}
               id="commitment"
             >
-              <option selected value="Exercise once a week">
-                Exercise once a week
+              <option selected value="Exercise">
+                Exercise
               </option>
-              <option value="Not smoke for the week">
-                Not smoke for the week
-              </option>
-              <option value="Eat Vegetables Daily">Eat Vegetables Daily</option>
+              <option value="Not smoke">Not smoke</option>
+              <option value="Eat Vegetables">Eat Vegetables</option>
             </select>
             <br></br>
           </div>
@@ -210,7 +208,7 @@ class Commitments extends React.Component {
         {/* View/Update Commitments  */}
         <div class="text-center text-white d-none d-lg-block">
           <br></br>
-          <h3>Commitments Dashboard</h3>
+          <h3>Dashboard - Commitments you Initiated!</h3>
           <br></br>
           <table class="table table-dark">
             <thead>
@@ -253,6 +251,70 @@ class Commitments extends React.Component {
                   <td> You have no commitments at the moment! </td>
                 </tr>
               )} */}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="text-center text-white d-none d-lg-block">
+          <br></br>
+          <h3>Dashboard - Commitments you have agreed to!</h3>
+          <br></br>
+          <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Commitment</th>
+                <th scope="col">Owner</th>
+                <th scope="col">Referee</th>
+                <th scope="col">Progress</th>
+                <th scope="col">Verified by Referee</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.commitments.map(commitment => {
+                return this.props.currentUser._id === commitment.buddy._id ? (
+                  <tr>
+                    <td> {commitment.commitment} </td>
+                    <td> {commitment.owner.username} </td>
+                    <td> {commitment.referee.username} </td>
+                    <td> {commitment.progress} </td>
+                    <td> {commitment.progress} </td>
+                  </tr>
+                ) : (
+                  ""
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="text-center text-white d-none d-lg-block">
+          <br></br>
+          <h3>Dashboard - Commitments you are Refereeing!</h3>
+          <br></br>
+          <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Commitment</th>
+                <th scope="col">Owner</th>
+                <th scope="col">Buddy</th>
+                <th scope="col">Progress</th>
+                <th scope="col">Verified by Referee</th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.state.commitments.map(commitment => {
+                return this.props.currentUser._id === commitment.referee._id ? (
+                  <tr>
+                    <td> {commitment.commitment} </td>
+                    <td> {commitment.owner.username} </td>
+                    <td> {commitment.buddy.username} </td>
+                    <td> {commitment.progress} </td>
+                    <td> {commitment.progress} </td>
+                  </tr>
+                ) : (
+                  ""
+                );
+              })}
             </tbody>
           </table>
         </div>
