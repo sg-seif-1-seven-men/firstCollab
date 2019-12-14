@@ -1,14 +1,25 @@
 // Import React Router
-const { BrowserRouter, Link, Switch, Route, browserHistory } = ReactRouterDOM;
+const { Redirect, BrowserRouter, Link, Switch, Route, browserHistory } = ReactRouterDOM;
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: "",
+      currentUser: "",
       commitments: []
     };
   }
+  userState = (user) => {
+    this.setState(
+      {
+        currentUser: user
+      },
+      () => {
+        console.log('user logged in');
+      }
+    );
+  };
   render() {
     return (
       <BrowserRouter>
@@ -24,6 +35,12 @@ class App extends React.Component {
             </Route>
             <Route path="/commitments">
               <Commitments />
+            </Route>
+            <Route path="/signup">
+              <Signup />
+            </Route>
+            <Route path="/login">
+              {this.state.currentUser ? <Redirect to="/commitments" /> : <Login userState={this.userState} />}
             </Route>
           </Switch>
 
