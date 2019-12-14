@@ -3,7 +3,7 @@ class Commitments extends React.Component {
     super(props);
     this.state = {
       commitment: "Exercise once a week",
-      owner: "",
+      owner: this.props.currentUser._id,
       buddy: "",
       referee: "",
       success: "",
@@ -65,8 +65,8 @@ class Commitments extends React.Component {
           "created commitment worked. currently at jsoned commitment"
         );
         this.setState({
-          commitment: "Exercise once a wee",
-          owner: "",
+          commitment: "Exercise once a week",
+          owner: this.props.currentUser._id,
           buddy: "",
           referee: "",
           success: "",
@@ -110,9 +110,9 @@ class Commitments extends React.Component {
               onChange={this.handleChange}
               id="owner"
             >
-              {this.state.users.map(user => {
-                return <option value={user._id}>{user.username}</option>;
-              })}
+              <option value={this.props.currentUser._id}>
+                {this.props.currentUser.username}
+              </option>
             </select>
             <br></br>
             <br></br>
@@ -123,6 +123,7 @@ class Commitments extends React.Component {
               onChange={this.handleChange}
               id="buddy"
             >
+              <option>Select Buddy</option>
               {this.state.users.map(user => {
                 return <option value={user._id}>{user.username}</option>;
               })}
@@ -136,6 +137,7 @@ class Commitments extends React.Component {
               onChange={this.handleChange}
               id="referee"
             >
+              <option>Select Referee</option>
               {this.state.users.map(user => {
                 return <option value={user._id}>{user.username}</option>;
               })}
@@ -160,10 +162,10 @@ class Commitments extends React.Component {
           <input type="submit" value="submit" />
         </form>
         <br></br>
-        {/* <h3>Submitted Info</h3>
+        <h3>Selected Info for your Verification before Submission</h3>
         <h5>Owner: {this.state.owner}</h5>
         <h5>Buddy: {this.state.buddy}</h5>
-        <h5>Referee: {this.state.referee}</h5> */}
+        <h5>Referee: {this.state.referee}</h5>
       </div>
     );
   }

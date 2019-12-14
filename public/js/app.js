@@ -1,6 +1,12 @@
 // Import React Router
-const { Redirect, BrowserRouter, Link, Switch, Route, browserHistory } = ReactRouterDOM;
-
+const {
+  Redirect,
+  BrowserRouter,
+  Link,
+  Switch,
+  Route,
+  browserHistory
+} = ReactRouterDOM;
 
 class App extends React.Component {
   constructor(props) {
@@ -10,20 +16,20 @@ class App extends React.Component {
       commitments: []
     };
   }
-  userState = (user) => {
+  userState = user => {
     this.setState(
       {
         currentUser: user
       },
       () => {
-        console.log('user logged in');
+        console.log("user logged in");
       }
     );
   };
 
   toLogout = () => {
     this.setState({
-      currentUser: ''
+      currentUser: ""
     });
   };
   
@@ -31,9 +37,10 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <Header currentUser={this.state.currentUser} toLogout={this.toLogout} />
-
-
+          <Header
+            currentUser={this.state.currentUser}
+            toLogout={this.toLogout}
+          />
 
           <Switch>
             <Route exact path="/">
@@ -43,13 +50,17 @@ class App extends React.Component {
               <About />
             </Route>
             <Route path="/commitments">
-              <Commitments />
+              <Commitments currentUser={this.state.currentUser} />
             </Route>
             <Route path="/signup">
               <Signup />
             </Route>
             <Route path="/login">
-              {this.state.currentUser ? <Redirect to="/commitments" /> : <Login userState={this.userState} />}
+              {this.state.currentUser ? (
+                <Redirect to="/commitments" />
+              ) : (
+                <Login userState={this.userState} />
+              )}
             </Route>
           </Switch>
 
