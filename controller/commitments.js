@@ -3,9 +3,15 @@ const router = express.Router();
 const Commitments = require("../models/commitments.js");
 
 router.get("/", (req, res) => {
-  Commitments.find({}, (err, foundCommitments) => {
-    res.json(foundCommitments);
-  });
+  Commitments.find({})
+    .populate("owner")
+    .populate("buddy")
+    .populate("referee")
+    .exec((err, foundCommitments) => {
+      if (err) console.log(err);
+      console.log("Commitments", foundCommitments);
+      res.json(foundCommitments);
+    });
 });
 
 router.delete("/:id", (req, res) => {
