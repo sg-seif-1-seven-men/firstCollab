@@ -32,17 +32,19 @@ class Header extends React.Component {
                 <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
                   <Link to="/signup">Signup</Link>
                 </li>
-                {/* {this.props.currentUser ? (
+
+                {/* To toggle log in or log out button  */}
+                {this.props.currentUser ? (
                   <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded" onClick={this.props.toLogout}>
                     Logout
 							</li>
-                ) : ( */}
-                <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
-                  <Link to="/login">
-                    Log In
+                ) : (
+                    <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
+                      <Link to="/login">
+                        Log In
 								</Link>
-                </li>
-                {/* )} */}
+                    </li>
+                  )}
               </ul>
             </div>
           </div>
