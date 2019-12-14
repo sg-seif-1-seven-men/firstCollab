@@ -229,7 +229,7 @@ class Commitments extends React.Component {
           <br></br>
           <h3>Dashboard - Commitments you Initiated!</h3>
           <br></br>
-          <table class="table table-dark">
+          <table class="table table-dark table-hover table-striped">
             <thead>
               <tr>
                 <th scope="col">Commitment</th>
@@ -282,7 +282,7 @@ class Commitments extends React.Component {
           <br></br>
           <h3>Dashboard - Commitments you have agreed to!</h3>
           <br></br>
-          <table class="table table-dark">
+          <table class="table table-dark table-hover table-striped">
             <thead>
               <tr>
                 <th scope="col">Commitment</th>
@@ -318,7 +318,7 @@ class Commitments extends React.Component {
           <br></br>
           <h3>Dashboard - Commitments you are Refereeing!</h3>
           <br></br>
-          <table class="table table-dark">
+          <table class="table table-dark table-hover table-striped">
             <thead>
               <tr>
                 <th scope="col">Commitment</th>

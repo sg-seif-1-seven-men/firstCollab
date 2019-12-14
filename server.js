@@ -42,9 +42,10 @@ const commitmentsController = require("./controller/commitments.js");
 app.use("/commitments", commitmentsController);
 const sessionsControllers = require("./controller/sessions.js");
 app.use("/sessions", sessionsControllers);
-
 const usersControllers = require("./controller/users.js");
 app.use("/users", usersControllers);
+const progressUpdateControllers = require("./controller/progressUpdate.js");
+app.use("/progressUpdate", progressUpdateControllers);
 
 // this will catch any route that doesn't exist
 app.get("*", (req, res) => {
