@@ -89,6 +89,9 @@ class App extends React.Component {
                   <Login userState={this.userState} />
                 )}
             </Route>
+            <Route path="/update">
+              <Progress />
+            </Route>
           </Switch>
 
           <Footer />
