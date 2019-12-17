@@ -1,9 +1,5 @@
 # firstCollab
 
-Daryl was here.
-
-Kenneth my name
-
 Welcome to BuddyGoals! This is a commitment device application, that leverages the power of community and behavioral economics to power us toward achieving our personal goals in a collective manner.
 
 How it works!

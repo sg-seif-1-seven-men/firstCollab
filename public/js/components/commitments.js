@@ -78,45 +78,54 @@ class Commitments extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
-    fetch("/commitments", {
-      body: JSON.stringify(this.state),
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json"
-      }
-    })
-      .then(createdCommitment => {
-        console.log("fetch worked. currently at created commitment");
-        return createdCommitment;
+    if (
+      this.state.buddy === this.props.currentUser._id ||
+      this.state.referee === this.props.currentUser._id
+    ) {
+      console.log(
+        "You can't be your own referee or buddy! Don't try to cheat!"
+      );
+      alert("You can't be your own referee or buddy! Don't try to cheat!");
+    } else {
+      fetch("/commitments", {
+        body: JSON.stringify(this.state),
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json"
+        }
       })
-      .then(jsonedCommitment => {
-        console.log(
-          "created commitment worked. currently at jsoned commitment"
-        );
-        this.setState({
-          commitment: "Exercise once a week",
-          duration: "",
-          frequency: "",
-          owner: this.props.currentUser._id,
-          buddy: "",
-          referee: "",
-          success: "",
-          progress: "Raring to Go!"
-        });
-        console.log(jsonedCommitment);
-
-        fetch("/commitments")
-          .then(response => response.json())
-          .then(commitments => {
-            console.log(commitments);
-            this.setState({
-              commitments: commitments
-            });
+        .then(createdCommitment => {
+          console.log("fetch worked. currently at created commitment");
+          return createdCommitment;
+        })
+        .then(jsonedCommitment => {
+          console.log(
+            "created commitment worked. currently at jsoned commitment"
+          );
+          this.setState({
+            commitment: "Exercise once a week",
+            duration: "",
+            frequency: "",
+            owner: this.props.currentUser._id,
+            buddy: "",
+            referee: "",
+            success: "",
+            progress: "Raring to Go!"
           });
-      })
-      .catch(error => console.log(error));
+          console.log(jsonedCommitment);
+
+          fetch("/commitments")
+            .then(response => response.json())
+            .then(commitments => {
+              console.log(commitments);
+              this.setState({
+                commitments: commitments
+              });
+            });
+        })
+        .catch(error => console.log(error));
+    }
   };
 
   render() {
