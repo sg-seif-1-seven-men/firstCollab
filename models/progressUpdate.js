@@ -5,6 +5,7 @@ const progressSchema = mongoose.Schema({
   date: Date,
   log: String,
   verificationStatus: Boolean,
+  completionStatus: Boolean,
   refereeComments: String
 });
 

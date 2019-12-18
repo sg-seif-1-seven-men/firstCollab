@@ -5,6 +5,7 @@ class Progress extends React.Component {
         date: "",
         log: "",
         verificationStatus: false,
+        completionStatus: false,
         refereeComments: "",
         users: [],
         commitments: [],
@@ -55,11 +56,13 @@ class Progress extends React.Component {
                 "created progress worked. currently at jsoned progress"
             );
             this.setState({
-                date: "",
-                log: "",
-                users: [],
-                commitments: [], //Access createdProgress
-                progress:[] //Spread Operator
+              date: "",
+              log: "",
+              verificationStatus: false,
+              completionStatus: false,
+              refereeComments: "",
+              commitments: [],
+              progress:[]
             });
             console.log("BREAK");
             console.log(jsonedProgress);
@@ -80,14 +83,14 @@ class Progress extends React.Component {
             // })
             
 
-            // fetch("/commitments")
-            // .then(response => response.json())
-            // .then(commitments => {
-            //     console.log(commitments);
-            //     this.setState({
-            //     commitments: commitments
-            //     });
-            // });
+            fetch("/commitments")
+            .then(response => response.json())
+            .then(commitments => {
+                console.log(commitments);
+                this.setState({
+                commitments: commitments
+                });
+            });
           })
           .catch(error => console.log(error));
       }
@@ -131,6 +134,43 @@ class Progress extends React.Component {
                     {/* Submit Button */}
                     <input type="submit" value="submit" />
                 </form>
+
+                <div class="text-center text-white d-none d-lg-block">
+                  <br></br>
+                  <h3>Progress Log!</h3>
+                  <br></br>
+                  <table class="table table-dark table-hover table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Progress Update</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Referee Comments</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {this.state.commitments.map(commitment => {
+                        return this.props.match.params.commitmentId === commitment._id ? (
+                          <tr>
+                            <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].date : "Null"} </td>
+                            <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
+                            <td> 
+                              {
+                                commitment.progress.length < 0 ? "Null" : commitment.progress[commitment.progress.length - 1].completionStatus ? "Completed" : "In Progress"
+                              } 
+                            </td>
+                            <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].refereeComments : "Null"} </td>
+                            <td>
+                              <Link to="/update">Verify as Referee</Link>
+                            </td>
+                          </tr>
+                        ) : (
+                          ""
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
 
                 {/* Render Verification Update for Referee */}
             </div>
