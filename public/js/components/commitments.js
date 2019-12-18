@@ -77,18 +77,22 @@ class Commitments extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
-    fetch("/commitments", {
-      body: JSON.stringify(this.state),
-      method: "POST",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json"
-      }
-    })
-      .then(createdCommitment => {
-        console.log("fetch worked. currently at created commitment");
-        return createdCommitment;
+    if (
+      this.state.buddy === this.props.currentUser._id ||
+      this.state.referee === this.props.currentUser._id
+    ) {
+      console.log(
+        "You can't be your own referee or buddy! Don't try to cheat!"
+      );
+      alert("You can't be your own referee or buddy! Don't try to cheat!");
+    } else {
+      fetch("/commitments", {
+        body: JSON.stringify(this.state),
+        method: "POST",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "application/json"
+        }
       })
       .then(jsonedCommitment => {
         console.log(
@@ -106,16 +110,17 @@ class Commitments extends React.Component {
         });
         console.log(jsonedCommitment);
 
-        fetch("/commitments")
-          .then(response => response.json())
-          .then(commitments => {
-            console.log(commitments);
-            this.setState({
-              commitments: commitments
+          fetch("/commitments")
+            .then(response => response.json())
+            .then(commitments => {
+              console.log(commitments);
+              this.setState({
+                commitments: commitments
+              });
             });
-          });
-      })
-      .catch(error => console.log(error));
+        })
+        .catch(error => console.log(error));
+    }
   };
 
   render() {
