@@ -1,12 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const Commitments = require("../models/commitments.js");
+const Progress = require("../models/progressUpdate.js");
 
 router.get("/", (req, res) => {
   Commitments.find({})
     .populate("owner")
     .populate("buddy")
     .populate("referee")
+    .populate("progress")
     .exec((err, foundCommitments) => {
       if (err) console.log(err);
       console.log("Commitments", foundCommitments);
@@ -27,7 +29,7 @@ router.post("/", (req, res) => {
       owner: req.body.owner,
       buddy: req.body.buddy,
       referee: req.body.referee,
-      success: req.body.success,
+      // success: req.body.success,
       progress: req.body.progress
     },
     (err, createdCommitments) => {
@@ -45,6 +47,7 @@ router.put("/:id", (req, res) => {
     req.body,
     { new: true },
     (err, updatedCommitments) => {
+      if (err) console.log(err);
       res.json(updatedCommitments);
     }
   );

@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const progressSchema = mongoose.Schema({
-  date: {type: Date, required: true},
-  log: {type: String, required: true},
+  date: Date,
+  log: String,
   verificationStatus: Boolean,
   refereeComments: String
 });

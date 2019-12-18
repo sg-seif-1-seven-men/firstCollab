@@ -11,8 +11,8 @@ const commitmentsSchema = mongoose.Schema({
   // owner: String,
   // buddy: String,
   // referee: String,
-  success: String,
-  progress: String
+  // success: String,
+  progress: [{ type: Schema.Types.ObjectId, ref: "Progress" }]
 });
 
 const Commitments = mongoose.model("Commitments", commitmentsSchema);

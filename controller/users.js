@@ -21,6 +21,7 @@ users.post("/", (req, res) => {
 });
 
 users.get("/", (req, res) => {
+  console.log("heerrree")
   User.find({}, (err, foundUser) => {
     res.json(foundUser);
   });

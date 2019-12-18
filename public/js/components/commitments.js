@@ -9,7 +9,7 @@ class Commitments extends React.Component {
       buddy: "",
       referee: "",
       success: "",
-      progress: "Raring to Go!",
+      // progress: "Raring to Go!",
       users: [],
       commitments: []
     };
@@ -18,7 +18,6 @@ class Commitments extends React.Component {
     fetch("/users")
       .then(response => response.json())
       .then(users => {
-        console.log(users);
         this.setState({
           users: users
         });
@@ -95,25 +94,21 @@ class Commitments extends React.Component {
           "Content-Type": "application/json"
         }
       })
-        .then(createdCommitment => {
-          console.log("fetch worked. currently at created commitment");
-          return createdCommitment;
-        })
-        .then(jsonedCommitment => {
-          console.log(
-            "created commitment worked. currently at jsoned commitment"
-          );
-          this.setState({
-            commitment: "Exercise once a week",
-            duration: "",
-            frequency: "",
-            owner: this.props.currentUser._id,
-            buddy: "",
-            referee: "",
-            success: "",
-            progress: "Raring to Go!"
-          });
-          console.log(jsonedCommitment);
+      .then(jsonedCommitment => {
+        console.log(
+          "created commitment worked. currently at jsoned commitment"
+        );
+        this.setState({
+          commitment: "Exercise once a week",
+          duration: "",
+          frequency: "",
+          owner: this.props.currentUser._id,
+          buddy: "",
+          referee: "",
+          success: "",
+          // progress: "Raring to Go!"
+        });
+        console.log(jsonedCommitment);
 
           fetch("/commitments")
             .then(response => response.json())
@@ -212,7 +207,7 @@ class Commitments extends React.Component {
             <br></br>
           </div>
           {/* Populate Progress Status  */}
-          <div>
+          {/* <div>
             My progress status is:<br></br>
             <select
               value={this.state.progress}
@@ -220,11 +215,11 @@ class Commitments extends React.Component {
               id="progress"
             >
               <option value="Raring to Go!">Raring to Go!</option>
-              {/* <option value="On Track!">On Track!</option>
-              <option value="Need Help!">Need Help!</option> */}
+              <option value="On Track!">On Track!</option>
+              <option value="Need Help!">Need Help!</option>
             </select>
           </div>
-          <br></br>
+          <br></br> */}
           {/* Submit Button */}
           <input type="submit" value="submit" />
         </form>
@@ -256,11 +251,12 @@ class Commitments extends React.Component {
                     <td> {commitment.commitment} </td>
                     <td> {commitment.buddy.username} </td>
                     <td> {commitment.referee.username} </td>
-                    <td> {commitment.progress} </td>
+                    <td> {commitment.progress[commitment.progress.length - 1].log} </td>
                     <td>
-                      <Link to="/update">Update Progress</Link>
+                      {/* <Link to="/update">Update Progress</Link> */}
+                      <Link to={{pathname: `/update/${commitment._id}`}}>Update Progress</Link>
                     </td>
-                    <td> {commitment.progress} </td>
+                    <td> {commitment.progress[commitment.progress.length - 1].log} </td>
                   </tr>
                 ) : (
                   ""
@@ -308,12 +304,12 @@ class Commitments extends React.Component {
                   <tr>
                     <td> {commitment.commitment} </td>
                     <td> {commitment.owner.username} </td>
-                    <td> {commitment.referee.username} </td>
-                    <td> {commitment.progress} </td>
+                    <td> {commitment.referee.username}</td>
+                    <td> {commitment.progress[commitment.progress.length - 1].log} </td>
                     <td>
-                      <Link to="/update">Update Progress</Link>
+                      <Link to={{pathname: `/${commitment._id}`, query:"/update"}}>Update Progress</Link>
                     </td>
-                    <td> {commitment.progress} </td>
+                    <td> {commitment.progress[commitment.progress.length - 1].log} </td>
                   </tr>
                 ) : (
                   ""
@@ -345,8 +341,8 @@ class Commitments extends React.Component {
                     <td> {commitment.commitment} </td>
                     <td> {commitment.owner.username} </td>
                     <td> {commitment.buddy.username} </td>
-                    <td> {commitment.progress} </td>
-                    <td> {commitment.progress} </td>
+                    <td> {commitment.progress[commitment.progress.length - 1].log} </td>
+                    <td> {commitment.progress[commitment.progress.length - 1].log} </td>
                     <td>
                       <Link to="/update">Verify as Referee</Link>
                     </td>
