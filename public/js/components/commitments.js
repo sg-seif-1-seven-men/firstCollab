@@ -241,7 +241,7 @@ class Commitments extends React.Component {
                 <th scope="col">Referee</th>
                 <th scope="col">Progress</th>
                 <th scope="col">Update Progress</th>
-                <th scope="col">Verified by Referee</th>
+                <th scope="col">Referee Comments</th>
               </tr>
             </thead>
             <tbody>
@@ -256,7 +256,7 @@ class Commitments extends React.Component {
                       {/* <Link to="/update">Update Progress</Link> */}
                       <Link to={{pathname: `/update/${commitment._id}`}}>Update Progress</Link>
                     </td>
-                    <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
+                    <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].refereeComments : "Null"} </td>
                   </tr>
                 ) : (
                   ""
@@ -295,7 +295,7 @@ class Commitments extends React.Component {
                 <th scope="col">Referee</th>
                 <th scope="col">Progress</th>
                 <th scope="col">Update Progress</th>
-                <th scope="col">Verified by Referee</th>
+                <th scope="col">Referee Comments</th>
               </tr>
             </thead>
             <tbody>
@@ -309,7 +309,7 @@ class Commitments extends React.Component {
                     <td>
                       <Link to={{pathname: `/update/${commitment._id}`, query:"/update"}}>Update Progress</Link>
                     </td>
-                    <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
+                    <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].refereeComments : "Null"} </td>
                   </tr>
                 ) : (
                   ""
@@ -330,7 +330,7 @@ class Commitments extends React.Component {
                 <th scope="col">Owner</th>
                 <th scope="col">Buddy</th>
                 <th scope="col">Progress</th>
-                <th scope="col">Verified by Referee</th>
+                <th scope="col">Referee Comments</th>
                 <th scope="col">Verify</th>
               </tr>
             </thead>
@@ -342,7 +342,7 @@ class Commitments extends React.Component {
                     <td> {commitment.owner.username} </td>
                     <td> {commitment.buddy.username} </td>
                     <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
-                    <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
+                    <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].refereeComments : "Null"} </td>
                     <td>
                       <Link to="/update">Verify as Referee</Link>
                     </td>
