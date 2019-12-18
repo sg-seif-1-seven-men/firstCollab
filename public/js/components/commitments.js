@@ -251,12 +251,12 @@ class Commitments extends React.Component {
                     <td> {commitment.commitment} </td>
                     <td> {commitment.buddy.username} </td>
                     <td> {commitment.referee.username} </td>
-                    <td> {commitment.progress[commitment.progress.length - 1].log} </td>
+                    <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
                     <td>
                       {/* <Link to="/update">Update Progress</Link> */}
                       <Link to={{pathname: `/update/${commitment._id}`}}>Update Progress</Link>
                     </td>
-                    <td> {commitment.progress[commitment.progress.length - 1].log} </td>
+                    <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
                   </tr>
                 ) : (
                   ""
@@ -305,11 +305,11 @@ class Commitments extends React.Component {
                     <td> {commitment.commitment} </td>
                     <td> {commitment.owner.username} </td>
                     <td> {commitment.referee.username}</td>
-                    <td> {commitment.progress[commitment.progress.length - 1].log} </td>
+                    <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
                     <td>
                       <Link to={{pathname: `/${commitment._id}`, query:"/update"}}>Update Progress</Link>
                     </td>
-                    <td> {commitment.progress[commitment.progress.length - 1].log} </td>
+                    <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
                   </tr>
                 ) : (
                   ""
@@ -341,8 +341,8 @@ class Commitments extends React.Component {
                     <td> {commitment.commitment} </td>
                     <td> {commitment.owner.username} </td>
                     <td> {commitment.buddy.username} </td>
-                    <td> {commitment.progress[commitment.progress.length - 1].log} </td>
-                    <td> {commitment.progress[commitment.progress.length - 1].log} </td>
+                    <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
+                    <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
                     <td>
                       <Link to="/update">Verify as Referee</Link>
                     </td>
