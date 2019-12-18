@@ -307,7 +307,7 @@ class Commitments extends React.Component {
                     <td> {commitment.referee.username}</td>
                     <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
                     <td>
-                      <Link to={{pathname: `/${commitment._id}`, query:"/update"}}>Update Progress</Link>
+                      <Link to={{pathname: `/update/${commitment._id}`, query:"/update"}}>Update Progress</Link>
                     </td>
                     <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
                   </tr>
