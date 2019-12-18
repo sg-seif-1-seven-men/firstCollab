@@ -29,7 +29,7 @@ progressUpdates.post("/:id", (req, res) => {
     (err, createdProgressUpdate) => {
       if (err) console.log(err);
       console.log("success");
-      res.json(createdProgressUpdate);
+      //res.json(createdProgressUpdate);
       console.log(createdProgressUpdate);
       Commitments.findByIdAndUpdate(
         { _id: req.params.id },
