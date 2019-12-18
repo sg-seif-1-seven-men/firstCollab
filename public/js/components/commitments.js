@@ -247,11 +247,12 @@ class Commitments extends React.Component {
                     <td> {commitment.commitment} </td>
                     <td> {commitment.buddy.username} </td>
                     <td> {commitment.referee.username} </td>
-                    <td> {commitment.progress} </td>
+                    {/* <td> {commitment.progress} </td> */}
                     <td>
-                      <Link to="/update">Update Progress</Link>
+                      {/* <Link to="/update">Update Progress</Link> */}
+                      <Link to={{pathname: `/update/${commitment._id}`}}>Update Progress</Link>
                     </td>
-                    <td> {commitment.progress} </td>
+                    {/* <td> {commitment.progress} </td> */}
                   </tr>
                 ) : (
                   ""
@@ -299,12 +300,12 @@ class Commitments extends React.Component {
                   <tr>
                     <td> {commitment.commitment} </td>
                     <td> {commitment.owner.username} </td>
-                    <td> {commitment.referee.username} </td>
-                    <td> {commitment.progress} </td>
+                    <td> {commitment.referee.username}</td>
+                    {/* <td> {commitment.progress} </td> */}
                     <td>
-                      <Link to="/update">Update Progress</Link>
+                      <Link to={{pathname: `/${commitment._id}`, query:"/update"}}>Update Progress</Link>
                     </td>
-                    <td> {commitment.progress} </td>
+                    {/* <td> {commitment.progress} </td> */}
                   </tr>
                 ) : (
                   ""
@@ -336,8 +337,8 @@ class Commitments extends React.Component {
                     <td> {commitment.commitment} </td>
                     <td> {commitment.owner.username} </td>
                     <td> {commitment.buddy.username} </td>
-                    <td> {commitment.progress} </td>
-                    <td> {commitment.progress} </td>
+                    {/* <td> {commitment.progress} </td>
+                    <td> {commitment.progress} </td> */}
                     <td>
                       <Link to="/update">Verify as Referee</Link>
                     </td>

@@ -47,6 +47,7 @@ router.put("/:id", (req, res) => {
     req.body,
     { new: true },
     (err, updatedCommitments) => {
+      if (err) console.log(err);
       res.json(updatedCommitments);
     }
   );

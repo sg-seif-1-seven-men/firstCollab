@@ -1,6 +1,7 @@
 const express = require("express");
 const progressUpdates = express.Router();
 const progressUpdate = require("../models/progressUpdate.js");
+const Commitments = require("../models/commitments.js");
 
 progressUpdates.get("/", (req, res) => {
   progressUpdate.find({}, (err, foundProgressUpdate) => {
@@ -17,7 +18,7 @@ progressUpdates.delete("/:id", (req, res) => {
   );
 });
 
-progressUpdates.post("/", (req, res) => {
+progressUpdates.post("/:id", (req, res) => {
   progressUpdate.create(
     {
       date: req.body.date,
@@ -30,19 +31,40 @@ progressUpdates.post("/", (req, res) => {
       console.log("success");
       res.json(createdProgressUpdate);
       console.log(createdProgressUpdate);
+      Commitments.findByIdAndUpdate(
+        { _id: req.params.id },
+        {
+          $addToSet: {
+            progress: createdProgressUpdate
+          }
+        },
+        { new: true },
+        (err, updatedProgressUpdate) => {
+          if(err) console.log(err);
+          console.log('Added Progress');
+          res.json(updatedProgressUpdate);
+        }
+      );
     }
   );
+
 });
 
-progressUpdates.put("/:id", (req, res) => {
-  progressUpdate.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true },
-    (err, updatedProgressUpdate) => {
-      res.json(updatedProgressUpdate);
-    }
-  );
-});
+// progressUpdates.put("/:id", (req, res) => {
+//   Commitments.findByIdAndUpdate(
+//     { _id: req.params.id },
+//     {
+//       $addToSet: {
+//         progress: req.body
+//       }
+//     },
+//     { new: true },
+//     (err, updatedProgressUpdate) => {
+//       if(err) console.log(err);
+//       console.log('Added Progress');
+//       res.json(updatedProgressUpdate);
+//     }
+//   );
+// });
 
 module.exports = progressUpdates;
