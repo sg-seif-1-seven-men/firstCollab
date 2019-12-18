@@ -135,6 +135,7 @@ class Progress extends React.Component {
                     <input type="submit" value="submit" />
                 </form>
 
+                {/* Display Progress Log  */}
                 <div class="text-center text-white d-none d-lg-block">
                   <br></br>
                   <h3>Progress Log!</h3>
@@ -151,19 +152,20 @@ class Progress extends React.Component {
                     <tbody>
                       {this.state.commitments.map(commitment => {
                         return this.props.match.params.commitmentId === commitment._id ? (
-                          <tr>
-                            <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].date : "Null"} </td>
-                            <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
-                            <td> 
-                              {
-                                commitment.progress.length < 0 ? "Null" : commitment.progress[commitment.progress.length - 1].completionStatus ? "Completed" : "In Progress"
-                              } 
-                            </td>
-                            <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].refereeComments : "Null"} </td>
-                            <td>
-                              <Link to="/update">Verify as Referee</Link>
-                            </td>
-                          </tr>
+                          commitment.progress.slice(0).reverse().map(progress => {
+                            return (
+                              <tr>
+                                <td> {progress.date} </td>
+                                <td> {progress.log} </td>
+                                <td> 
+                                  {
+                                    progress.completionStatus ? "Completed" : "In Progress"
+                                  } 
+                                </td>
+                                <td> {progress.refereeComments} </td>
+                              </tr>
+                            )
+                          })
                         ) : (
                           ""
                         );
