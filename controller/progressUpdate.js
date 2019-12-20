@@ -24,6 +24,7 @@ progressUpdates.post("/:id", (req, res) => {
       date: req.body.date,
       log: req.body.log,
       verificationStatus: req.body.verificationStatus,
+      completionStatus: req.body.completionStatus,
       refereeComments: req.body.refereeComments
     },
     (err, createdProgressUpdate) => {
