@@ -60,6 +60,9 @@ class Header extends React.Component {
                       ""
                     )}
                 </li>
+                <li class="nav-item px-lg-4 nav-link text-uppercase text-expanded">
+                  <a href="http://127.0.0.1:3001">PAY $99 NOW</a>
+                </li>
               </ul>
             </div>
           </div>
