@@ -94,21 +94,21 @@ class Commitments extends React.Component {
           "Content-Type": "application/json"
         }
       })
-      .then(jsonedCommitment => {
-        console.log(
-          "created commitment worked. currently at jsoned commitment"
-        );
-        this.setState({
-          commitment: "Exercise once a week",
-          duration: "",
-          frequency: "",
-          owner: this.props.currentUser._id,
-          buddy: "",
-          referee: "",
-          success: "",
-          // progress: "Raring to Go!"
-        });
-        console.log(jsonedCommitment);
+        .then(jsonedCommitment => {
+          console.log(
+            "created commitment worked. currently at jsoned commitment"
+          );
+          this.setState({
+            commitment: "Exercise once a week",
+            duration: "",
+            frequency: "",
+            owner: this.props.currentUser._id,
+            buddy: "",
+            referee: "",
+            success: "",
+            // progress: "Raring to Go!"
+          });
+          console.log(jsonedCommitment);
 
           fetch("/commitments")
             .then(response => response.json())
@@ -254,13 +254,13 @@ class Commitments extends React.Component {
                     <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
                     <td>
                       {/* <Link to="/update">Update Progress</Link> */}
-                      <Link to={{pathname: `/update/${commitment._id}`}}>Update Progress</Link>
+                      <Link to={{ pathname: `/update/${commitment._id}` }}>Update Progress</Link>
                     </td>
                     <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].refereeComments : "Null"} </td>
                   </tr>
                 ) : (
-                  ""
-                );
+                    ""
+                  );
               })}
 
               {/* {this.props.currentUser._id === commitment.owner._id ? (
@@ -307,13 +307,13 @@ class Commitments extends React.Component {
                     <td> {commitment.referee.username}</td>
                     <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
                     <td>
-                      <Link to={{pathname: `/update/${commitment._id}`, query:"/update"}}>Update Progress</Link>
+                      <Link to={{ pathname: `/update/${commitment._id}`, query: "/update" }}>Update Progress</Link>
                     </td>
                     <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].refereeComments : "Null"} </td>
                   </tr>
                 ) : (
-                  ""
-                );
+                    ""
+                  );
               })}
             </tbody>
           </table>
@@ -344,12 +344,12 @@ class Commitments extends React.Component {
                     <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
                     <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].refereeComments : "Null"} </td>
                     <td>
-                      <Link to="/update">Verify as Referee</Link>
+                      <a href="http://127.0.0.1:3001">You Fail!!!</a>
                     </td>
                   </tr>
                 ) : (
-                  ""
-                );
+                    ""
+                  );
               })}
             </tbody>
           </table>
