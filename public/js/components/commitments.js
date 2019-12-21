@@ -344,7 +344,7 @@ class Commitments extends React.Component {
                     <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].log : "Null"} </td>
                     <td> {commitment.progress.length > 0 ? commitment.progress[commitment.progress.length - 1].refereeComments : "Null"} </td>
                     <td>
-                      <a href="http://127.0.0.1:3001">You Fail!!!</a>
+                      <a href="http://127.0.0.1:3001">You Fail!!! Pay $99</a>
                     </td>
                   </tr>
                 ) : (
