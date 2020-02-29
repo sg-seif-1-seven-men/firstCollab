@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 const mongoURI =
   process.env.MONGODB_URI ||
-  "mongodb+srv://kkarunia23:generalassembly123@cluster0-knxzn.mongodb.net/sticky?retryWrites=true&w=majority";
+  "mongodb+srv://kkarunia23:ansonroad@cluster0-knxzn.mongodb.net/sticky?retryWrites=true&w=majority";
 
 // Connect to Mongo
 mongoose.connect(
